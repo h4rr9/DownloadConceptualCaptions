@@ -5,6 +5,7 @@ from PIL import Image
 import requests
 import zlib
 import os
+import io
 import shelve
 import magic
 from multiprocessing import Pool
@@ -138,7 +139,7 @@ def download_image(row):
             with open(fname, "wb") as out_file:
                 # some sites respond with gzip transport encoding
                 response.raw.decode_content = True
-                image = Image.open(io.Bytes(response.content))
+                image = Image.open(io.BytesIO(response.content))
                 image = image.resize((32, 32), Image.LANCZOS)
                 out_file.write(image.tobytes())
             row["mimetype"] = magic.from_file(fname, mime=True)

@@ -179,8 +179,9 @@ def df_from_shelve(chunk_size, func, dataset_name):
     help="The number of images per chunk. Changing this value will reset progress",
 )
 @click.argument("data_split_tsv")
-def main(num_processes, images_per_part, data_split_tsv):
-    data_name = f"shelve_{data_split_tsv}"
+@click.argument("split_name")
+def main(num_processes, images_per_part, data_split_tsv, split_name):
+    data_name = split_name
     df = open_tsv(data_split_tsv, data_name)
     df_multiprocess(
         df=df,

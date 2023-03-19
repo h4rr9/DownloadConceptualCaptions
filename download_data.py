@@ -173,7 +173,7 @@ def df_from_shelve(chunk_size, func, dataset_name):
 
 
 @click.command()
-@click.option("--num_processes", default=12, help="the number of processes")
+@click.option("--num_processes", default=16, help="the number of processes")
 @click.option(
     "--images_per_part",
     default=100,

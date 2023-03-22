@@ -141,6 +141,7 @@ def download_image(row):
                 response.raw.decode_content = True
                 image = Image.open(io.BytesIO(response.content))
                 image = image.resize((32, 32), Image.LANCZOS)
+                image = image.convert("RGB")
                 out_file.write(image.tobytes())
             row["mimetype"] = magic.from_file(fname, mime=True)
             row["size"] = os.stat(fname).st_size
